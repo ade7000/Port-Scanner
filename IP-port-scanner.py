@@ -4,10 +4,12 @@ import threading
 
 from queue import Queue
 
-socket.setdefaulttimeout(0.5)
+# blochez thread/implementez socket timeout
+
+socket.setdefaulttimeout(0.25)
 print_lock = threading.Lock()
 
-target = input('Enter the host to be scanned: ')
+target = input('Enter the host ip to be scanned: ')
 t_IP = socket.gethostbyname(target)
 print('Starting scan on host: ', t_IP)
 
@@ -22,7 +24,9 @@ def portscan(port):
     except:
         pass
 
-
+# stabilirea executiei in coada - o instanta pe rand
+# se tine cont de durata scanarii
+    
 def threader():
     while True:
         worker = q.get()
@@ -38,7 +42,7 @@ for x in range(100):
     t.daemon = True
     t.start()
 
-for worker in range(1, 1000):
+for worker in range(1, 100):
     q.put(worker)
 
 q.join()
