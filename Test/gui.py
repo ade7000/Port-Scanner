@@ -145,12 +145,55 @@ class Ui_MainWindow(object):
 
 
     def verifying(self):
+        #Verifying the IP address
         self.ip=self.input_ip.text()
+        #Put your code here
+
+        #Verifying the port range
+        if (self.input_ports.text()==''):
+            self.portmin=1
+            self.portmax=1024
+        else:
+            ports=self.input_ports.text().split("-")
+            if (len(ports)==2):
+                self.portmin=int(ports[0])
+                self.portmax=int(ports[1])
+            else:
+                self.portmin=1
+                self.portmax=int(self.input_ports.text())
+        
+          
+        #Verifying which checkbox is selected
+        nr=0
+        if (self.checkBox_fastest.isChecked()==1):
+            self.v = 0.25
+            nr += 1
+        if (self.checkBox_fast.isChecked()==1):
+            self.v = 1
+            nr += 1
+        if(self.checkBox_medium.isChecked()==1):
+            self.v = 2
+            nr += 1
+        if(self.checkBox_slow.isChecked()==1):
+            self.v = 5
+            nr += 1
+        if(self.checkBox_slowest.isChecked()==1):
+            self.v = 10000000
+            nr += 1
+
+        if(nr==0 or nr>1):
+            self.v = 1
+        
+        if(self.input_outfile.text()==''):
+            pass
+        else:
+            filename=self.input_outfile.text()
+            f = open(filename,"x")
         self.scanning()
         
         
     def scanning(self):
-        socket.setdefaulttimeout(0.25)
+        socket.setdefaulttimeout(self.v)
         print_lock = threading.Lock()
         
         #try:
@@ -167,7 +210,7 @@ class Ui_MainWindow(object):
             try:
                 con = s.connect((t_IP, port))
                 with print_lock:
-                    print("Port {} is open.".format(port))
+                    print("Port %s is open. Service name: %s" %(port,socket.getservbyport(port,"tcp")))
                     con.close()
            # except socket.gaierror:
             #    msg = QtWidgets.QMessageBox()
@@ -188,12 +231,12 @@ class Ui_MainWindow(object):
         q = Queue()
         startTime = time.time()
 
-        for x in range(1024):
+        for t in range(100):
             t = threading.Thread(target=threader)
             t.daemon = True
             t.start()
 
-        for worker in range(1, 1024):
+        for worker in range(self.portmin, self.portmax):
             q.put(worker)
 
         q.join()
