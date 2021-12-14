@@ -161,8 +161,8 @@ class Ui_MainWindow(object):
                 con = s.connect((t_IP, port))
                 with print_lock:
                     print("Port %s is open. Service name: %s" %(port,socket.getservbyport(port,"tcp")))
-                    con.close()
-           # except socket.gaierror:
+                    return con
+            # except socket.gaierror:
             #    msg = QtWidgets.QMessageBox()
              #   msg.setWindowTitle("Wrong IP address")
               #  msg.setText("The host could not be resolved")
