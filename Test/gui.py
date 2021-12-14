@@ -27,84 +27,51 @@ class Ui_MainWindow(object):
         #********************************************************
 
         self.ip_label = QtWidgets.QLabel(self.centralwidget)
-        self.ip_label.setGeometry(QtCore.QRect(10, 10, 241, 41))
+        self.ip_label.setGeometry(QtCore.QRect(10, 10, 300, 41))
         font = QtGui.QFont()
         font.setPointSize(17)
         self.ip_label.setFont(font)
-        self.ip_label.setText(_translate("MainWindow", "What is the IP address?"))
+        self.ip_label.setText(_translate("MainWindow", "What are the IP addresses"))
+
+        self.ip_label2 = QtWidgets.QLabel(self.centralwidget)
+        self.ip_label2.setGeometry(QtCore.QRect(10, 40, 301, 51))
+        self.ip_label2.setFont(font)
+        self.ip_label2.setText(_translate("MainWindow", "or the Subnet?"))
 
         self.input_ip = QtWidgets.QLineEdit(self.centralwidget)
-        self.input_ip.setGeometry(QtCore.QRect(20, 50, 181, 31))
+        self.input_ip.setGeometry(QtCore.QRect(10, 90, 241, 141))
 
         #********************************************************
         #Port Range Form
         #********************************************************
 
         self.ports_label = QtWidgets.QLabel(self.centralwidget)
-        self.ports_label.setGeometry(QtCore.QRect(10, 90, 281, 81))
+        self.ports_label.setGeometry(QtCore.QRect(10, 220, 281, 81))
         self.ports_label.setFont(font)
         self.ports_label.setText(_translate("MainWindow", "What is the range of ports?"))
 
         self.warning_ports = QtWidgets.QLabel(self.centralwidget)
-        self.warning_ports.setGeometry(QtCore.QRect(20, 150, 371, 21))
+        self.warning_ports.setGeometry(QtCore.QRect(20, 280, 290, 21))
         font.setPointSize(13)
         self.warning_ports.setFont(font)
         self.warning_ports.setText(_translate("MainWindow", "If no ports specified, scan the first "))
         self.warning2_ports = QtWidgets.QLabel(self.centralwidget)
-        self.warning2_ports.setGeometry(QtCore.QRect(20, 160, 101, 41))
+        self.warning2_ports.setGeometry(QtCore.QRect(20, 290, 101, 41))
         self.warning2_ports.setFont(font)
         self.warning2_ports.setText(_translate("MainWindow", "1024 ports."))
 
         self.input_ports = QtWidgets.QLineEdit(self.centralwidget)
-        self.input_ports.setGeometry(QtCore.QRect(20, 200, 181, 31))
+        self.input_ports.setGeometry(QtCore.QRect(20, 330, 181, 31))
 
         #*********************************************************
-        #Speed Form
+        #Output Box
         #*********************************************************
-
-        self.speed_label = QtWidgets.QLabel(self.centralwidget)
-        self.speed_label.setGeometry(QtCore.QRect(330, 10, 461, 41))
-        font.setPointSize(17)
-        self.speed_label.setFont(font)
-        self.speed_label.setText(_translate("MainWindow", "How fast would you want the scan to be?"))
-
-        self.speed_warning_label = QtWidgets.QLabel(self.centralwidget)
-        self.speed_warning_label.setGeometry(QtCore.QRect(340, 40, 411, 41))
-        font.setPointSize(13)
-        self.speed_warning_label.setFont(font)
-        self.speed_warning_label.setText(_translate("MainWindow", "Please check only one box. If none of them is checked "))
-        self.speed_warning2_label = QtWidgets.QLabel(self.centralwidget)
-        self.speed_warning2_label.setGeometry(QtCore.QRect(340, 70, 421, 21))
-        self.speed_warning2_label.setFont(font)
-        self.speed_warning2_label.setText(_translate("MainWindow", "or more than one are checked, go with default ( Medium)."))
-
-        #CheckBoxes
-        self.checkBox_fastest = QtWidgets.QCheckBox(self.centralwidget)
-        self.checkBox_fastest.setGeometry(QtCore.QRect(330, 100, 331, 25))
+        
+        self.output_scan = QtWidgets.QTextBrowser(self.centralwidget)
+        self.output_scan.setGeometry(QtCore.QRect(310,10,481,311))
         font.setPointSize(14)
-        self.checkBox_fastest.setFont(font)
-        self.checkBox_fastest.setText(_translate("MainWindow", "The fastest, don\'t wait any second"))
-
-        self.checkBox_fast = QtWidgets.QCheckBox(self.centralwidget)
-        self.checkBox_fast.setGeometry(QtCore.QRect(330, 140, 231, 25))
-        self.checkBox_fast.setFont(font)
-        self.checkBox_fast.setText(_translate("MainWindow", "Fast, wait just a bit"))
-
-        self.checkBox_medium = QtWidgets.QCheckBox(self.centralwidget)
-        self.checkBox_medium.setGeometry(QtCore.QRect(330, 180, 261, 21))
-        self.checkBox_medium.setFont(font)
-        self.checkBox_medium.setText(_translate("MainWindow", "Medium, wait one second"))
-
-        self.checkBox_slow = QtWidgets.QCheckBox(self.centralwidget)
-        self.checkBox_slow.setGeometry(QtCore.QRect(330, 220, 201, 25))
-        self.checkBox_slow.setFont(font)
-        self.checkBox_slow.setText(_translate("MainWindow", "Slow, wait 2 seconds"))
-
-        self.checkBox_slowest = QtWidgets.QCheckBox(self.centralwidget)
-        self.checkBox_slowest.setGeometry(QtCore.QRect(330, 260, 271, 25))
-        self.checkBox_slowest.setFont(font)
-        self.checkBox_slowest.setText(_translate("MainWindow", "The slowest, wait 5 seconds"))
-
+        self.output_scan.setFont(font)
+        
         #************************************************************
         #Output File Form
         #************************************************************
@@ -122,12 +89,16 @@ class Ui_MainWindow(object):
         self.outfile_label.setText(_translate("MainWindow", "If yes, write the name of the file:"))
 
         self.input_outfile = QtWidgets.QLineEdit(self.centralwidget)
-        self.input_outfile.setGeometry(QtCore.QRect(340, 390, 231, 31))
+        self.input_outfile.setGeometry(QtCore.QRect(340, 390, 250, 31))
 
         self.outfile_label2 = QtWidgets.QLabel(self.centralwidget)
         self.outfile_label2.setGeometry(QtCore.QRect(340,410,461,50))
         self.outfile_label2.setFont(font)
         self.outfile_label2.setText(_translate("MainWindow", "(You will still see the scanning, but it's saving at the end)"))
+
+        self.outfile_button = QtWidgets.QPushButton(self.centralwidget)
+        self.outfile_button.setGeometry(QtCore.QRect(630,390,91,31))
+        self.outfile_button.setText(_translate("MainWindow", "Submit"))
 
         #***********************************************************
         #Submit Button
@@ -163,27 +134,6 @@ class Ui_MainWindow(object):
                 self.portmax=int(self.input_ports.text())
         
           
-        #Verifying which checkbox is selected
-        nr=0
-        if (self.checkBox_fastest.isChecked()==1):
-            self.v = 0.25
-            nr += 1
-        if (self.checkBox_fast.isChecked()==1):
-            self.v = 1
-            nr += 1
-        if(self.checkBox_medium.isChecked()==1):
-            self.v = 2
-            nr += 1
-        if(self.checkBox_slow.isChecked()==1):
-            self.v = 5
-            nr += 1
-        if(self.checkBox_slowest.isChecked()==1):
-            self.v = 10000000
-            nr += 1
-
-        if(nr==0 or nr>1):
-            self.v = 1
-        
         if(self.input_outfile.text()==''):
             pass
         else:
@@ -193,7 +143,7 @@ class Ui_MainWindow(object):
         
         
     def scanning(self):
-        socket.setdefaulttimeout(self.v)
+        socket.setdefaulttimeout(1)
         print_lock = threading.Lock()
         
         #try:
@@ -211,7 +161,7 @@ class Ui_MainWindow(object):
                 con = s.connect((t_IP, port))
                 with print_lock:
                     print("Port %s is open. Service name: %s" %(port,socket.getservbyport(port,"tcp")))
-
+                    con.close()
            # except socket.gaierror:
             #    msg = QtWidgets.QMessageBox()
              #   msg.setWindowTitle("Wrong IP address")
