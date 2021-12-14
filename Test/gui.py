@@ -160,7 +160,8 @@ class Ui_MainWindow(object):
             try:
                 con = s.connect((t_IP, port))
                 with print_lock:
-                    print("Port %s is open. Service name: %s" %(port,socket.getservbyport(port,"tcp")))
+                    print("Port %s is open. Service name: %s" %(port,socket.getservbyport(port,"tcp")
+                    print(con)
                     con.close()
            # except socket.gaierror:
             #    msg = QtWidgets.QMessageBox()
