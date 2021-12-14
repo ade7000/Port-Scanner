@@ -128,26 +128,8 @@ class Ui_MainWindow(object):
                 self.portmin = 1
                 self.portmax = int(self.input_ports.text())
 
-        # Verifying which checkbox is selected
-        nr = 0
-        if (self.checkBox_fastest.isChecked() == 1):
-            self.v = 0.25
-            nr += 1
-        if (self.checkBox_fast.isChecked() == 1):
-            self.v = 1
-            nr += 1
-        if (self.checkBox_medium.isChecked() == 1):
-            self.v = 2
-            nr += 1
-        if (self.checkBox_slow.isChecked() == 1):
-            self.v = 5
-            nr += 1
-        if (self.checkBox_slowest.isChecked() == 1):
-            self.v = 10000000
-            nr += 1
 
-        if (nr == 0 or nr > 1):
-            self.v = 1
+
 
         if (self.input_outfile.text() == ''):
             pass
@@ -157,7 +139,7 @@ class Ui_MainWindow(object):
         self.scanning()
 
     def scanning(self):
-        socket.setdefaulttimeout(self.v)
+        socket.setdefaulttimeout(1)
         print_lock = threading.Lock()
 
         # try:
